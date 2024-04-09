@@ -1,0 +1,29 @@
+level_0:
+  global_frame: map
+  maps_package: handyman
+  maps:
+    localization: maps/LayoutA.yaml
+    #routes: maps/floor_0/routes.yaml
+level_1:
+  global_frame: map
+  maps_package: handyman
+  maps:
+    localization: maps/LayoutB.yaml
+    #routes: maps/floor_1/routes.yaml
+level_2:
+  global_frame: map
+  maps_package: handyman
+  maps:
+    localization: maps/LayoutC.yaml
+    #routes: maps/floor_0/routes.yaml
+level_3:
+  global_frame: map
+  maps_package: handyman
+  maps:
+    localization: maps/LayoutD.yaml
+    #routes: maps/floor_1/routes.yaml
+level_4:
+  global_frame: map
+  maps_package: handyman
+  maps:
+    localization: maps/Layout2019HM01.yaml

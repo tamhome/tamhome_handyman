@@ -1,0 +1,4 @@
+<launch>
+  <arg name="map_path" default="$(find tamhome_handyman)/maps/handyman_multi.yaml"/>
+  <node name="multimap_server" pkg="multimap_server" type="multimap_server" args="$(arg map_path)" />
+</launch>
