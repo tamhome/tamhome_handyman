@@ -11,7 +11,7 @@
   <include file="$(find sigverse_ros_bridge)/launch/sigverse_ros_bridge.launch" />
 
   <!-- launch basic-functions -->
-  <include file="$(find sigverse_hsrb_bringup)/launch/bringup.launch">
+  <include file="$(find sigverse_hsrb_utils)/launch/bringup.launch">
     <arg name="use_map_server" value="$(arg use_map_server)" />
     <arg name="use_map_topic" value="$(arg use_map_server)" />
   </include>
