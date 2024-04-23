@@ -8,16 +8,14 @@ import smach
 import smach_ros
 
 from tamlib.utils import Logger
+from tamhome_task_parser.srv import ParseTask, ParseTaskRequest, ParseTaskResponse
 
 
-class PickUp(smach.State, Logger):
+class Put(smach.State, Logger):
     def __init__(self, outcomes):
         smach.State.__init__(self, outcomes=outcomes)
-        Logger.__init__(self)
+        Logger.__init__(self, loglevel="INFO")
 
-    def exec(self, userdata):
-        """物体の探索と把持を行う
-        """
-        # 物体の探索
-        target_frame = "target_frame"
+    def execute(self, userdata):
+        self.loginfo("put: 未実装スキル")
         return "next"

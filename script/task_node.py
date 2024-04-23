@@ -9,7 +9,7 @@ import smach_ros
 # from hsrlib.hsrif import HSRInterfaces
 
 from state_machine import standard
-from state_machine import task_parser, move, pickup
+from state_machine import parse_skill, move, grasp, find, deliver, put
 
 
 class InteractiveCleanupStateMachine():
@@ -36,42 +36,72 @@ class InteractiveCleanupStateMachine():
             smach.StateMachine.add(
                 "Start",
                 standard.Start(["next", "except"]),
-                transitions={"next": "RecognizeTargetPoint", "except": "Except"},
+                transitions={"next": "ParseSkill", "except": "Except"},
             )
 
             # Interactive cleanup
             smach.StateMachine.add(
-                "TaskParser",
-                task_parser.TaskParser(["move", "except", "done"]),
+                "ParseSkill",
+                parse_skill.ParseSkill(["move", "find", "grasp", "deliver", "put", "except", "done"]),
                 transitions={
                     "move": "Move",
-                    "except": "Except",
+                    "find": "Find",
+                    "grasp": "Grasp",
+                    "deliver": "Deliver",
+                    "put": "Put",
                     "done": "Finish",
+                    "except": "Except",
                 },
             )
             smach.StateMachine.add(
                 "Move",
                 move.Move(["next", "loop", "except"]),
                 transitions={
-                    "next": "TaskParser",
-                    "loop": "Move2Pickup",
+                    "next": "ParseSkill",
+                    "loop": "Move",
                     "except": "Except",
                 },
             )
             smach.StateMachine.add(
-                "Pickup",
-                pickup.PickUp(["next", "loop", "except"]),
+                "Find",
+                find.FindState(["next", "loop", "except"]),
                 transitions={
-                    "next": "TaskParser",
-                    "loop": "Pickup",
+                    "next": "ParseSkill",
+                    "loop": "Find",
                     "except": "Except",
                 },
             )
-
+            smach.StateMachine.add(
+                "Grasp",
+                grasp.GraspState(["next", "loop", "except"]),
+                transitions={
+                    "next": "ParseSkill",
+                    "loop": "Grasp",
+                    "except": "Except",
+                },
+            )
+            smach.StateMachine.add(
+                "Deliver",
+                deliver.DeliverState(["next", "loop", "except"]),
+                transitions={
+                    "next": "ParseSkill",
+                    "loop": "Deliver",
+                    "except": "Except",
+                },
+            )
+            smach.StateMachine.add(
+                "Put",
+                put.Put(["next", "loop", "except"]),
+                transitions={
+                    "next": "ParseSkill",
+                    "loop": "Put",
+                    "except": "Except",
+                },
+            )
             smach.StateMachine.add(
                 "Finish",
                 standard.Finish(["finish"]),
-                transitions={"finish": "exit"},
+                transitions={"finish": "Init"},
             )
             smach.StateMachine.add(
                 "Except",
