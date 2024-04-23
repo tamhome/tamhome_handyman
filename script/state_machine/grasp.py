@@ -12,6 +12,7 @@ from tamlib.utils import Logger
 from tamhome_skills import Grasp, Find
 
 from geometry_msgs.msg import Pose
+from handyman.msg import HandymanMsg
 
 
 class GraspState(smach.State, Logger):
@@ -21,6 +22,9 @@ class GraspState(smach.State, Logger):
 
         self.tam_grasp = Grasp()
         self.tam_find = Find()
+
+        # ros interface
+        self.pub_to_moderator = rospy.Publisher("/handyman/message/to_moderator", HandymanMsg, queue_size=5)
 
     def execute(self, userdata):
         """物体の把持を行う
@@ -43,9 +47,14 @@ class GraspState(smach.State, Logger):
         target_pose.orientation.z = target_pose_list[5]
         target_pose.orientation.w = target_pose_list[6]
 
-        self.tam_grasp.grasp_obj_by_pose(target_pose)
+        self.tam_grasp.grasp_obj_by_pose(target_pose, timeout=30)
 
         # 把持したため値をリセット
         rospy.set_param("/tamhome_skills/object_detection/current_pose_odom", "none")
+
+        msg = HandymanMsg()
+        msg.message = "Object_grapsed"
+        msg.detail = "Object_grapsed"
+        self.pub_to_moderator.publish(msg)
 
         return "next"

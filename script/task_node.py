@@ -91,7 +91,7 @@ class InteractiveCleanupStateMachine():
             )
             smach.StateMachine.add(
                 "Put",
-                put.Put(["next", "loop", "except"]),
+                put.PutState(["next", "loop", "except"]),
                 transitions={
                     "next": "ParseSkill",
                     "loop": "Put",

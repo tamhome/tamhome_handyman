@@ -22,7 +22,7 @@ class ParseSkill(smach.State, Logger):
         # 直前のスキルを保存する
         self.logdebug("save previous skills")
         previous_skill = rospy.get_param("/handyman/commands/next_skill", "start")
-        previous_target = rospy.get_param("/handyman/commands/next_skill", "none")
+        previous_target = rospy.get_param("/handyman/commands/next_target", "none")
 
         rospy.set_param("/handyman/commands/previous_skill", previous_skill)
         rospy.set_param("/handyman/commands/previous_target", previous_target)
