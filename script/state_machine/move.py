@@ -191,7 +191,7 @@ class Move(smach.State, Logger):
         for index, score in enumerate(scores):
             if max(score) > th:
                 max_index = np.argmax(score)
-                # self.loginfo("input: [" + target_array[index] + "] -> replace: [" + dictonary[max_index] + "]")
+                self.loginfo("input: [" + target_array[index] + "] -> replace: [" + dictonary[max_index] + "]")
 
                 # 置換結果の文字列作成
                 if (index + 1) < len(scores):
@@ -210,7 +210,7 @@ class Move(smach.State, Logger):
         return result_str
 
     def execute(self, userdata):
-        """部屋に移動する
+        """指定された家具/部屋に移動する
         """
         room_layout = rospy.get_param("/handyman/room_layout", "Layout2019HM01")
         target_room = rospy.get_param("/handyman/commands/next_target", "kitchen")

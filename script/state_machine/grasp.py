@@ -53,8 +53,8 @@ class GraspState(smach.State, Logger):
         rospy.set_param("/tamhome_skills/object_detection/current_pose_odom", "none")
 
         msg = HandymanMsg()
-        msg.message = "Object_grapsed"
-        msg.detail = "Object_grapsed"
+        msg.message = "Object_grasped"
+        msg.detail = "Object_grasped"
         self.pub_to_moderator.publish(msg)
 
         return "next"
