@@ -47,14 +47,26 @@ class GraspState(smach.State, Logger):
         target_pose.orientation.z = target_pose_list[5]
         target_pose.orientation.w = target_pose_list[6]
 
-        self.tam_grasp.grasp_obj_by_pose(target_pose, timeout=30)
+        status = self.tam_grasp.grasp_obj_by_pose(target_pose, timeout=30, source_frame="odom")
 
         # 把持したため値をリセット
         rospy.set_param("/tamhome_skills/object_detection/current_pose_odom", "none")
 
-        msg = HandymanMsg()
-        msg.message = "Object_grasped"
-        msg.detail = "Object_grasped"
-        self.pub_to_moderator.publish(msg)
+        if status is True:
+            msg = HandymanMsg()
+            msg.message = "Object_grasped"
+            msg.detail = "Object_grasped"
+            self.pub_to_moderator.publish(msg)
+
+        try:
+            msg = rospy.wait_for_message("/handyman/message/to_robot", HandymanMsg, timeout=1)
+            if msg.message == "Task_failed":
+                return "except"
+            else:
+                self.logsuccess("I can grasp correct object!")
+        except Exception as e:
+            self.logwarn(e)
+            pass
+
 
         return "next"

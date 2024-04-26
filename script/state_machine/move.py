@@ -32,7 +32,7 @@ class Move(smach.State, Logger):
             "Layout2019HM01": {
                 "kitchen": {
                     "root": [7.12, 1.42, 1.57],
-                    "wooden_side_table": [4.73, 2.20, 1.57],
+                    "wooden_side_table": [4.73, 2.40, -1.57],
                     "dining_table": [7.12, 4.77, -1.57],
                     "custom_kitchen": [8.2, 4.77, 0],
                     "custom_kitchen#1": [8.2, 4.77, 0],
@@ -41,7 +41,7 @@ class Move(smach.State, Logger):
                     "blue_cupboard": [8.79, 3.00, 0],
                 },
                 "living": {
-                    "root": [0.83, 3.09, 1.57],
+                    "root": [2.10, 3.76, 3.14],
                     "white_side_table": [2.02, 0.36, -1.57],
                     "sofa": [0.0, 4.49, 3.14],
                     "square_low_table": [2.10, 3.76, 3.14],
@@ -65,7 +65,7 @@ class Move(smach.State, Logger):
                     "white_side_table": [9.35, -3.40, 1.57],
                     "white_side_table_1": [8.88, -6.32, 0],
                     "white_side_table_2": [9.35, -3.40, 1.57],
-                    "cardboard_box": [8.70, -4.80, 0],
+                    "cardboard_box": [8.70, -4.85, 0],
                     "wagon": [8.23, -3.20, 1.57],
                 },
             },
@@ -86,6 +86,7 @@ class Move(smach.State, Logger):
                     "round_low_table": [2.60, 9.08, 3.14],
                     "square_low_table": [2.10, 11.16, 3.14],
                     "TV_rack#2": [-0.29, 10.34, 2.9],
+                    "TV_rack": [-0.29, 10.34, 2.9],
                     "white_chair": [4.59, 11.71, 0],
                     "cardboard_box": [2.23, 8.22, -1.57]
                 },
@@ -110,16 +111,19 @@ class Move(smach.State, Logger):
             "Layout2020HM01": {
                 "kitchen": {
                     "root": [7.93, -1.29, 0],
-                    "wooden_cupboard": [8.20, -1.36, 0],
-                    "blue_cupboard": [8.20, 0.30, 0],
+                    "wooden_cupboard": [8.05, -1.36, 0],
+                    "blue_cupboard": [8.05, 0.30, 0],
                     "custome_kitchen": [7.23, 1.23, 3.14],
+                    "kitchen": [7.23, 1.23, 3.14],
                 },
                 "living": {
                     "root": [2.92, -0.309, 1.57],
                     "shelf_A": [1.38, 3.37, -1],
+                    "shelf": [1.38, 3.37, -1],
+                    "wide_shelf": [-0.472, -0.730, -1.57],
                     "wooden_side_table": [2.92, -0.199, -1.57],
                     "square_low_table": [2.70, -0.199, -1.57],
-                    "white_side_table": [-0.29, 3.65, 3.14],
+                    "white_side_table": [-0.13, 3.65, 3.14],
                     "wooden_shelf": [2.33, 4.45, 1.57]
                 },
                 "lobby": {
@@ -141,7 +145,7 @@ class Move(smach.State, Logger):
                 },
                 "living": {
                     "root": [2.18, -0.30, -1.57],
-                    "white_shelf": [4.05, 1.15, 0],
+                    "white_shelf": [4.00, 1.10, 0],
                     "white_side_table": [2.05, 0.36, 1.57],
                     "dining_table": [2.18, -0.66, -1.57],
                     "TV_rack": [3.53, -2.39, 0],
@@ -151,7 +155,7 @@ class Move(smach.State, Logger):
                 "lobby": {
                     "root": [-4.53, -8.37, 0],
                     "sofa": [-4.53, -8.37, 0],
-                    "cardboard_box": [-5.64, -7.08, 3.14],
+                    "cardboard_box": [-5.64, -7.23, 3.14],
                     "white_side_table": [-3.94, -9.85, -1.57],
                     "dining_table": [-4.54, -8.41, 0],
                     "trash_box": [-3.18, -5.12, 1.57],
@@ -162,6 +166,7 @@ class Move(smach.State, Logger):
                     "root": [1.61, -7.73, 1.57],
                     "white_side_table": [1.55, -7.54, 1.57],
                     "magazine_rack_B": [0.80, -7.98, 3.14],
+                    "magazine_rack": [0.80, -7.98, 3.14],
                     "wagon": [0.80, -9.00, 3.14],
                     "wooden_bed": [2.58, -10.61, 3.14],
                     "armchair": [4.30, -9.14, -1.57],

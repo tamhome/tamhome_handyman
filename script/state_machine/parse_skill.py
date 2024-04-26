@@ -54,7 +54,9 @@ class ParseSkill(smach.State, Logger):
 
         # for sopl japanopen 2024
         if target == "rubik's_cube" or target == "rubik's":
-            target = "rubick"
+            target = "rubick_cube"
+        elif target == "sugar":
+            target = "white_small_bin"
 
         rospy.set_param("/handyman/commands/next_skill", next_skill)
         rospy.set_param("/handyman/commands/next_target", target)

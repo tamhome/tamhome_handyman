@@ -23,7 +23,7 @@ class PutState(smach.State, Logger):
         self.tam_move_joints = MoveJoints()
 
         self.put_joints = {
-            "default": [0.3, -0.9, 0.0, -0.65, 0.0],
+            "default": [0.5, -0.9, 0.0, -0.65, 0.0],
             "cardboard_box": [0.3, -0.9, 0.0, -0.65, 0.0],
             "trash_box": [0.6, -0.9, 0.0, -0.65, 0.0],
             "armchair": [0.4, -0.9, 0.0, -0.65, 0.0],
@@ -55,7 +55,7 @@ class PutState(smach.State, Logger):
                         target_joint[4],
                     )
                     rospy.sleep(3)
-                    self.tam_grasp._move_forward(0.1)
+                    self.tam_grasp._move_forward(0.3)
                     rospy.sleep(1)
                     self.tam_move_joints.gripper(3.14)
                 except Exception as e:
