@@ -8,8 +8,7 @@
 singularity shell -B /run/user/1000,/var/lib/dbus/machine-id --nv env/sandbox_sigverse/
 source /entrypoint.sh
 source devel/setup.bash
-roslaunch tamhome_hsrb_utils rosbridge_server.launch
-# roslaunch interactive_cleanup teleop_key.launch
+roslaunch tamhome_hsrb_utils sigverse_rosbridge_server.launch
 ```
 
 - Unityを起動
