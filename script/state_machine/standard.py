@@ -14,6 +14,8 @@ from std_srvs.srv import Empty, EmptyRequest, EmptyResponse
 from nav_msgs.msg import OccupancyGrid
 from nav_msgs.srv import SetMap, SetMapRequest, SetMapResponse
 from tamhome_task_parser.srv import AddPrompt, AddPromptRequest, AddPromptResponse
+from sigverse_hsrlib import HSRBMoveIt
+from sigverse_hsrb_nav import HSRBNavigation
 
 
 class Init(smach.State, Logger):
@@ -42,6 +44,9 @@ class Wait4Start(smach.State, Logger):
 
         # タスク理解用プロンプトのリセット
         self.srv_reset_prompt = rospy.ServiceProxy("/tamhome/task_parser/reset_prompt", Empty)
+
+        self.moveit = HSRBMoveIt()
+        self.hsrb_nav = HSRBNavigation()
 
     def set_inital_pose(self):
         self.loginfo("set inital pose.")
@@ -171,6 +176,10 @@ class Wait4Start(smach.State, Logger):
         # プロンプトのリセット
         req = EmptyRequest()
         self.srv_reset_prompt(req)
+
+        self.moveit.delete()
+        self.hsrb_nav.cancel_goal()
+        rospy.sleep(1)
 
         # mapの切り替え
         self.map_detector()

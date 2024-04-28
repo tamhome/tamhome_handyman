@@ -49,24 +49,31 @@ class GraspState(smach.State, Logger):
 
         status = self.tam_grasp.grasp_obj_by_pose(target_pose, timeout=30, source_frame="odom")
 
-        # 把持したため値をリセット
-        rospy.set_param("/tamhome_skills/object_detection/current_pose_odom", "none")
-
         if status is True:
-            msg = HandymanMsg()
-            msg.message = "Object_grasped"
-            msg.detail = "Object_grasped"
-            self.pub_to_moderator.publish(msg)
+            # 把持したため値をリセット
+            rospy.set_param("/tamhome_skills/object_detection/current_pose_odom", "none")
 
-        try:
-            msg = rospy.wait_for_message("/handyman/message/to_robot", HandymanMsg, timeout=1)
-            if msg.message == "Task_failed":
-                return "except"
-            else:
-                self.logsuccess("I can grasp correct object!")
-        except Exception as e:
-            self.logwarn(e)
-            pass
+            if status is True:
+                msg = HandymanMsg()
+                msg.message = "Object_grasped"
+                msg.detail = "Object_grasped"
+                self.pub_to_moderator.publish(msg)
 
+            try:
+                msg = rospy.wait_for_message("/handyman/message/to_robot", HandymanMsg, timeout=1)
+                if msg.message == "Task_failed":
+                    return "except"
+                else:
+                    self.logsuccess("I can grasp correct object!")
+            except Exception as e:
+                self.logwarn(e)
+                pass
 
-        return "next"
+            return "next"
+
+        else:
+            # TODO: 把持を再トライするように修正
+            # 把持したため値をリセット
+            rospy.set_param("/tamhome_skills/object_detection/current_pose_odom", "none")
+
+            return "except"
