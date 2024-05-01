@@ -21,5 +21,5 @@ class DeliverState(smach.State, Logger):
 
     def execute(self, userdata):
         self.loginfo("pass to nearest person")
-        self.tam_deliver.pass_to_near_person(self)
+        self.tam_deliver.pass_to_near_person()
         return "next"
