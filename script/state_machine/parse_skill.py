@@ -15,7 +15,7 @@ from handyman.msg import HandymanMsg
 class ParseSkill(smach.State, Logger):
     def __init__(self, outcomes):
         smach.State.__init__(self, outcomes=outcomes)
-        Logger.__init__(self, loglevel="TRACE")
+        Logger.__init__(self, loglevel="INFO")
 
         self.srv_task_parser = rospy.ServiceProxy("/tamhome/task_parser/service", ParseTask)
 
@@ -51,12 +51,6 @@ class ParseSkill(smach.State, Logger):
 
         next_skill = response.next_skill
         target = response.target
-
-        # for sopl japanopen 2024
-        if target == "rubik's_cube" or target == "rubik's":
-            target = "rubick_cube"
-        elif target == "sugar":
-            target = "white_small_bin"
 
         rospy.set_param("/handyman/commands/next_skill", next_skill)
         rospy.set_param("/handyman/commands/next_target", target)
