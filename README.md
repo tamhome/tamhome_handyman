@@ -1,6 +1,5 @@
 # HandyMan
 
-
 ## Demonstration Video (YouTube)
 
 <p align="center">
