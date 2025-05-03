@@ -177,9 +177,10 @@ class Wait4Start(smach.State, Logger):
         req = EmptyRequest()
         self.srv_reset_prompt(req)
 
-        self.moveit.delete()
-        self.hsrb_nav.cancel_goal()
-        rospy.sleep(1)
+        for _ in range(3):
+            self.moveit.delete()
+            self.hsrb_nav.cancel_goal()
+            rospy.sleep(0.3)
 
         # mapの切り替え
         self.map_detector()

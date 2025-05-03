@@ -17,7 +17,7 @@
 
     <param name="/handyman/wait_to_ready" value="$(arg wait_to_ready)" />
 
-    <node name="state_machine" pkg="tamhome_handyman" type="task_node.py" output="screen">
+    <node name="state_machine" pkg="tamhome_handyman" type="task_node.py" respawn="true" output="screen">
         <param name="start_state" value="$(arg start_state)" />
     </node>
 

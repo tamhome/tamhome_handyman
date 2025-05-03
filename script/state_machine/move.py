@@ -145,7 +145,7 @@ class Move(smach.State, Logger):
                 },
                 "living": {
                     "root": [2.18, -0.30, -1.57],
-                    "white_shelf": [3.60, 1.10, 0],
+                    "white_shelf": [3.60, 0.80, 0],
                     "white_side_table": [2.05, 0.36, 1.57],
                     "dining_table": [2.18, -0.66, -1.57],
                     "TV_rack": [3.53, -2.39, 0],

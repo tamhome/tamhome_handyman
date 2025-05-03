@@ -47,7 +47,9 @@ class GraspState(smach.State, Logger):
         target_pose.orientation.z = target_pose_list[5]
         target_pose.orientation.w = target_pose_list[6]
 
-        status = self.tam_grasp.grasp_obj_by_pose(target_pose, timeout=30, source_frame="odom", grasp_from="front")
+        default_grasp_joint = [0.15, -1.57, 0.0, 0.00, 0.0]
+
+        status = self.tam_grasp.grasp_obj_by_pose(target_pose, timeout=30, source_frame="odom", grasp_from="front", default_grasp_joint=default_grasp_joint)
 
         if status is True:
             # 把持したため値をリセット
